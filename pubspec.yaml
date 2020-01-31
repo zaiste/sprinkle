@@ -1,6 +1,6 @@
 name: sprinkle
 description: A convenient Flutter architecture for happy programmers
-version: 0.0.1
+version: 0.0.2
 homepage: https://github.com/zaiste/sprinkle
 
 environment:
@@ -9,7 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  rxdart:
+  rxdart: ^0.23.1
 
 dev_dependencies:
   flutter_test:
