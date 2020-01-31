@@ -4,7 +4,10 @@ class Overseer {
   Map<dynamic, Manager> repository = {};
   Map<dynamic, Function> _factories = {};
 
-  Overseer(this._factories);
+  Overseer register<T>(_factory) {
+    _factories[T] = _factory;
+    return this;
+  }
 
   _summon(name) => repository[name] = _factories[name]();
 
