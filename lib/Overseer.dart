@@ -1,10 +1,13 @@
 import 'Manager.dart';
 
+typedef ManagerFactory = Manager Function();
+
+
 class Overseer {
   Map<dynamic, Manager> repository = {};
   Map<dynamic, Function> _factories = {};
 
-  Overseer register<T>(_factory) {
+  Overseer register<T extends Manager>(_factory) {
     _factories[T] = _factory;
     return this;
   }
