@@ -12,10 +12,6 @@ class Overseer {
     return this;
   }
 
-  T dispatch<T>() {
-    return fetch<T>();
-  }
-
   _summon(name) {
     var manager =  _factories[name]();
     manager.dispatch = <T>() => fetch<T>();
