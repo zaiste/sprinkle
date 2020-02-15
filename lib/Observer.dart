@@ -2,25 +2,27 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
+typedef _OnSuccessFunction<T> = Widget Function(BuildContext context, T data);
+typedef _OnErrorFunction = Widget Function(BuildContext context, Object error);
+typedef _OnWaitingFunction = Widget Function(BuildContext context);
+
 class Observer<T> extends StatelessWidget {
-  @required
+ 
   final Stream<T> stream;
 
-  @required
-  final Function onSuccess;
+  final _OnSuccessFunction<T> onSuccess;
+  final _OnWaitingFunction onWaiting;
+  final _OnErrorFunction onError;
 
-  final Function onError;
-  final Function onWaiting;
-
-  const Observer({this.onError, this.onSuccess, this.stream, this.onWaiting});
+  const Observer({Key key, @required this.stream, @required this.onSuccess, this.onWaiting, this.onError}) : super(key: key);
 
   Function get _defaultOnWaiting =>
-      (context) => Center(child: CircularProgressIndicator());
+    (context) => Center(child: CircularProgressIndicator());
   Function get _defaultOnError => (context, error) => Text(error);
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+        return StreamBuilder(
       stream: stream,
       builder: (context, AsyncSnapshot<T> snapshot) {
         if (snapshot.hasError) {

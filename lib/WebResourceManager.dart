@@ -26,9 +26,14 @@ class WebResourceManager<T> implements Manager {
     _collectionSubject.listen((elements) => _countSubject.add(elements.length));
   }
 
+  @override
   void dispose() {
     _countSubject.close();
     _filterSubject.close();
     _collectionSubject.close();
   }
+
+  @override
+  T Function<T>() dispatch;
+
 }
