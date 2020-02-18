@@ -1,14 +1,14 @@
 import 'dart:async';
 
 import 'package:sprinkle/AuthManager.dart';
+import 'package:sprinkle/Manager.dart';
 
 
-mixin ErrorHandler {
+mixin ErrorHandler on Manager {
 
   void handleError(Object object, StackTrace stackTrace, EventSink sink);
 
-  //Optional override
-  AuthManager getAuthManager() => null;
+  AuthManager getAuthManager() => dispatch<AuthManager>();
 
   StreamTransformer<T, T> errorHandler<T>() => StreamTransformer<T, T>.fromHandlers(
     handleError: (object, stackTrace, sink) {
