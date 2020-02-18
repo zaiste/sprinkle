@@ -24,7 +24,10 @@ mixin ErrorHandler on Manager {
 
       //if status forbidden resource
       if(statusCode == 403) {
+        sink.addError(object);
         this.getAuthManager().setAuthState(AuthState.notLoggedIn);
+      } else {
+        this.handleError(object, stackTrace, sink);
       }
 
     }
