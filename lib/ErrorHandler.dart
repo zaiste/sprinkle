@@ -2,15 +2,13 @@ import 'dart:async';
 
 import 'package:sprinkle/AuthManager.dart';
 
-// For make to getAuthManager is optional
-abstract class AuthInterface {
-  AuthManager getAuthManager();
-}
 
-mixin ErrorHandler implements AuthInterface {
+mixin ErrorHandler {
 
   void handleError(Object object, StackTrace stackTrace, EventSink sink);
 
+  //Optional override
+  AuthManager getAuthManager() => null;
 
   StreamTransformer<T, T> errorHandler<T>() => StreamTransformer<T, T>.fromHandlers(
     handleError: (object, stackTrace, sink) {
