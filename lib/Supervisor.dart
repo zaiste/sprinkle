@@ -2,12 +2,11 @@ import 'Manager.dart';
 
 typedef ManagerFormula = Manager Function();
 
-
-class Overseer {
+class Supervisor {
   Map<dynamic, Manager> store = {};
   Map<dynamic, ManagerFormula> formulas = {};
 
-  Overseer register<T extends Manager>(ManagerFormula formula) {
+  Supervisor register<T extends Manager>(ManagerFormula formula) {
     formulas[T] = formula;
     return this;
   }
