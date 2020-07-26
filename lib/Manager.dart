@@ -1,7 +1,6 @@
-typedef DispatchFunction = T Function<T>();
+typedef UseFunction = T Function<T>();
 
 abstract class Manager {
-  DispatchFunction dispatch;
-
+  UseFunction use;
   void dispose();
 }
