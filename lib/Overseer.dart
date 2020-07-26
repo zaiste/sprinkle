@@ -1,29 +1,30 @@
 import 'Manager.dart';
 
-typedef ManagerFactory = Manager Function();
+typedef ManagerFormula = Manager Function();
 
 
 class Overseer {
-  Map<dynamic, Manager> repository = {};
-  Map<dynamic, ManagerFactory> _factories = {};
+  Map<dynamic, Manager> store = {};
+  Map<dynamic, ManagerFormula> formulas = {};
 
-  Overseer register<T extends Manager>(ManagerFactory _factory) {
-    _factories[T] = _factory;
+  Overseer register<T extends Manager>(ManagerFormula formula) {
+    formulas[T] = formula;
     return this;
   }
 
-  _summon(name) {
-    var manager =  _factories[name]();
-    manager.dispatch = <T>() => fetch<T>();
-    repository[name] = manager;
+  _fetch(name) {
+    var manager = formulas[name]();
+    manager.use = <T>() => summon<T>();
+
+    store[name] = manager;
+
     return manager;
   }
-
-  T fetch<T>() => repository.containsKey(T) ? repository[T] : _summon(T);
+  T summon<T>() => store.containsKey(T) ? store[T] : _fetch(T);
 
   release(name) {
-    Manager manager = repository[name];
+    Manager manager = store[name];
     manager.dispose();
-    repository.remove(name);
+    store.remove(name);
   }
 }
