@@ -1,6 +1,6 @@
 name: sprinkle
-description: A convenient Flutter architecture for happy programmers
-version: 0.0.2
+description: A convenient, stream-based Flutter architecture
+version: 0.0.3
 homepage: https://github.com/zaiste/sprinkle
 
 environment:
@@ -15,9 +15,5 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-# For information on the generic Dart part of this file, see the
-# following page: https://dart.dev/tools/pub/pubspec
-
-# The following section is specific to Flutter.
 flutter:
 
