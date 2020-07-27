@@ -1,3 +1,12 @@
+## [0.0.3] - 2020-07-27
+
+* Rename `Overseer` -> `Supervisor`
+* Rename `fetch` -> `use` for fetching managers into the widget tree
+* Improve `Supervisor` implementation
+* Add `display` convenience method on `BuildContext` for displaying routes
+* Add `reactive` method for creating reactive, stream-based data stores in managers
+* Add `showSnackBar` convenience method on `BuildContext` for showing snackbars
+
 ## [0.0.2] - 2020-01-31
 
 * Manager abstraction `WebResourceManager` for interacting with web resources
