@@ -7,12 +7,16 @@ import 'Provider.dart';
 extension SprinkleExtension<T> on BuildContext {
   T use<T>() => Provider.of(this).summon<T>();
 
-  display(Widget widget) async {
-    await Navigator.of(this).push(
-      MaterialPageRoute(builder: (_) => widget),
+  Future<T> putRoute<T>(Route<T> route) => Navigator.of(this).push(route);
+
+  Future<T> display<T>(Widget widget) =>
+      this.putRoute(MaterialPageRoute<T>(builder: (context) => widget));
+
+  showSnackBar(String content, {Color backgroundColor}) {
+    return Scaffold.of(this).showSnackBar(
+      SnackBar(content: Text(content), backgroundColor: backgroundColor),
     );
   }
-
 }
 
 extension SprinkleInt on int {

@@ -11,14 +11,7 @@ class Supervisor {
     return this;
   }
 
-  _fetch(name) {
-    var manager = formulas[name]();
-    manager.use = <T>() => summon<T>();
-
-    store[name] = manager;
-
-    return manager;
-  }
+  _fetch(name) => store[name] = formulas[name]();
   T summon<T>() => store.containsKey(T) ? store[T] : _fetch(T);
 
   release(name) {
