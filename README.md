@@ -65,3 +65,40 @@ class LoginManager extends Manager {
  }
 ```
 
+### Convenience Methods
+
+Some convenience methods that follow the Pareto principle, i.e. Sprinkle makes aliases for the most common code scenarios.
+
+#### Navigation
+
+To change routes, you can write
+
+```dart
+context.display(AnotherPage())
+```
+
+instead of
+
+```dart
+Navigator.push(
+  context,
+  MaterialPageRoute(builder: (context) => AnotherPage()),
+);
+```
+
+#### SnackBar
+
+To display a snackbar, you can write:
+
+```dart
+context.showSnackBar("...you text");
+```
+
+instead of
+
+```dart
+Scaffold.of(context).showSnackBar(
+  SnackBar(content: Text('Yay! A SnackBar!'))
+);
+```
+
