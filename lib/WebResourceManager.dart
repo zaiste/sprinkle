@@ -34,6 +34,6 @@ class WebResourceManager<T> implements Manager {
   }
 
   @override
-  T Function<T>() dispatch;
+  T Function<T>() use;
 
 }

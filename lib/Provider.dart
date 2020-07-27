@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:sprinkle/Overseer.dart';
+
+import 'Supervisor.dart';
 
 class Provider extends InheritedWidget {
   final Supervisor data;
