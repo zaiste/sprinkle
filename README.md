@@ -20,7 +20,7 @@ class CounterManager extends Manager {
   // 1. we create a data store (it's just a stream underneath)
   var counter = 0.reactive
 
-  // 2. we define some effects
+  // 2. we define some events
   void increment() => counter.value++;
   void decrement() => counter.value--;
   void add(int number) => counter.value += number;
