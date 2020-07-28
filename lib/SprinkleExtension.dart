@@ -30,3 +30,7 @@ extension SprinkleString on String {
 extension SprinkleDouble on double {
   BehaviorSubject<double> get reactive => BehaviorSubject<double>.seeded(this);
 }
+
+extension SprinkleWidget on Widget {
+  Widget padding(double padding) => Padding(padding: EdgeInsets.all(padding), child: this);
+}

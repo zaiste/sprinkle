@@ -102,3 +102,32 @@ Scaffold.of(context).showSnackBar(
 );
 ```
 
+#### Padding
+
+Use `.padding()` method on widgets directly
+
+```dart
+Column(
+  children: [
+    Text("User 1").padding(8),
+    Text("User 2").padding(8),
+  ],
+);
+```
+
+instead of wrapping them with `Padding`:
+
+```dart
+Column(
+  children: [
+    Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Text("User 1"),
+    ),
+    Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Text("User 2"),
+    ),
+  ],
+);
+```
