@@ -35,6 +35,10 @@ extension SprinkleBool on bool {
   BehaviorSubject<bool> get reactive => BehaviorSubject<bool>.seeded(this);
 }
 
+extension SprinkleList<T> on List<T> {
+  BehaviorSubject<List<T>> get reactive => BehaviorSubject<List<T>>.seeded(this);
+}
+
 extension SprinkleWidget on Widget {
   Widget padding(double padding) =>
       Padding(padding: EdgeInsets.all(padding), child: this);
