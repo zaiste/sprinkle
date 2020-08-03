@@ -32,5 +32,8 @@ extension SprinkleDouble on double {
 }
 
 extension SprinkleWidget on Widget {
-  Widget padding(double padding) => Padding(padding: EdgeInsets.all(padding), child: this);
+  Widget padding(double padding) =>
+      Padding(padding: EdgeInsets.all(padding), child: this);
+
+  Widget center() => Center(child: this);
 }
