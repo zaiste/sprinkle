@@ -4,14 +4,13 @@
 
 ## Getting Started
 
-
 ## Overview
 
 ### State Management
 
 Sprinkle is based on streams. Streams are one of the core mechanics in Dart and in Flutter. Whether you are interacting with your database (e.g. Firebase) or trying to control the order and timing of requests sent to an API, streams are the most natural solution for these scenerios - we could say that streams are **idiomatic** in Flutter.
 
-Why don't we use streams everywhere for simplicity and coherence then?! Streams are considered *difficult*, but that reputation couldn't be further from the truth. Once you undestand the benefits, there is no coming back to traditional state management approaches. And Sprinkle simplifies stream complexities - it's an easy to understand and coherent solution for state management in Flutter.
+Why don't we use streams everywhere for simplicity and coherence then?! Streams are considered _difficult_, but that reputation couldn't be further from the truth. Once you undestand the benefits, there is no coming back to traditional state management approaches. And Sprinkle simplifies stream complexities - it's an easy to understand and coherent solution for state management in Flutter.
 
 #### Reactive
 
@@ -129,5 +128,29 @@ Column(
       child: Text("User 2"),
     ),
   ],
+);
+```
+
+#### Center
+
+Use `.center()` method on widgets directly
+
+```dart
+Column(
+  children: [
+
+  ],
+).center();
+```
+
+instead of wrapping them with `Center`:
+
+```dart
+Center(
+  child:Column(
+    children: [
+
+    ],
+)
 );
 ```
