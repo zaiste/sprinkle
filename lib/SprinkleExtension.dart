@@ -31,6 +31,10 @@ extension SprinkleDouble on double {
   BehaviorSubject<double> get reactive => BehaviorSubject<double>.seeded(this);
 }
 
+extension SprinkleBool on bool {
+  BehaviorSubject<bool> get reactive => BehaviorSubject<bool>.seeded(this);
+}
+
 extension SprinkleWidget on Widget {
   Widget padding(double padding) =>
       Padding(padding: EdgeInsets.all(padding), child: this);
