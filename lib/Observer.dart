@@ -9,14 +9,14 @@ typedef _OnWaitingFunction = Widget Function(BuildContext context);
 class Observer<T> extends StatelessWidget {
   final Stream<T> stream;
 
-  final _OnSuccessFunction<T> onSuccess;
+  final _OnSuccessFunction<T> builder;
   final _OnWaitingFunction onWaiting;
   final _OnErrorFunction onError;
 
   const Observer(
       {Key key,
       @required this.stream,
-      @required this.onSuccess,
+      @required this.builder,
       this.onWaiting,
       this.onError})
       : super(key: key);
@@ -38,7 +38,7 @@ class Observer<T> extends StatelessWidget {
 
         if (snapshot.hasData) {
           T data = snapshot.data;
-          return onSuccess(context, data);
+          return builder(context, data);
         } else {
           return (onWaiting != null)
               ? onWaiting(context)
