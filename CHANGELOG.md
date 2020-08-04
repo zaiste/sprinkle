@@ -1,3 +1,12 @@
+## [0.0.4] - 2020-08-04
+
+* Add `.padding()` Widget extension
+* Add `.center()` Widget extension
+* Rename `onSuccess:` -> `builder:` in `Observer`
+* Add reactivity to `bool`
+* Add reactivity to `List`
+* Add `Sprinkle` top-level Widget
+
 ## [0.0.3] - 2020-07-27
 
 * Rename `Overseer` -> `Supervisor`
