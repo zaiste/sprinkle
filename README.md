@@ -8,25 +8,29 @@
 
 ### State Management
 
-Sprinkle is based on streams. Streams are one of the core mechanics in Dart and in Flutter. Whether you are interacting with your database (e.g. Firebase) or trying to control the order and timing of requests sent to an API, streams are the most natural solution for these scenerios - we could say that streams are **idiomatic** in Flutter.
+Sprinkle is based on streams. Streams are one of the core mechanics in Dart and in Flutter. Whether you are interacting with your database (e.g. Firebase) or trying to control the order and timing of requests sent to an API, streams are the most natural solution for these scenarios - we could say that streams are **idiomatic** in Flutter.
 
-Why don't we use streams everywhere for simplicity and coherence then?! Streams are considered _difficult_, but that reputation couldn't be further from the truth. Once you undestand the benefits, there is no coming back to traditional state management approaches. And Sprinkle simplifies stream complexities - it's an easy to understand and coherent solution for state management in Flutter.
+Why don't we use streams everywhere for simplicity and coherence then?! Streams are considered _difficult_, but that reputation is slightly exaggerated. Once you understand the benefits, there is no coming back to traditional state management approaches. And Sprinkle simplifies stream complexities - it's an easy to understand and coherent solution for state management in Flutter.
 
 #### Reactive
+
+Start by creating a `Manager`. It's a class that manages one or many data *stores*. It also exposes *actions* as methods to change the state in these data stores.
 
 ```dart
 class CounterManager extends Manager {
   // 1. we create a data store (it's just a stream underneath)
   var counter = 0.reactive
 
-  // 2. we define some events
+  // 2. we define some actions 
   void increment() => counter.value++;
   void decrement() => counter.value--;
   void add(int number) => counter.value += number;
 }
+```
 
-// Somewhere in the widget tree inside the `build` method
+Somewhere in the widget tree, inside the `build` method we can ask for a specific `Manager` by using the `use` method of the `BuildContext`
 
+```dart
 class Counter extends StatelessWidget { // Our widgets are *always* stateless
   @override
   Widget build(BuildContext context) {
@@ -37,9 +41,74 @@ class Counter extends StatelessWidget { // Our widgets are *always* stateless
       // 4. we observe a part of widget tree
       child: Observer<int>(
         // 5. we listen to a specific stream from the manager
-        stream: manager.counter.stream,
+        stream: manager.counter,
         // 6. we rebuild once the stream changes
-        builder: (context, value) => Text("Calendar: $value"),
+        builder: (context, value) => Text("Counter: $value"),
+      ),
+    );
+  }
+}
+```
+
+Reactivity is enabled for the following types in Dart:
+
+##### `bool`
+
+```dart
+var value = false.reactive;
+```
+
+##### `int`
+
+```dart
+var value = 42.reactive;
+```
+
+##### `String`
+
+```dart
+var value = 'The quick brown fox jumps over the lazy dog'.reactive;
+```
+
+##### `List`
+
+```dart
+var value = <String>[].reactive 
+```
+
+#### Automatic Provider Setup
+
+Use the `Sprinkle` widget to split the responsibilities and reduce the boilerplate so that you can write this:
+
+```dart
+var supervisor = Supervisor()
+  .register<AManager>(() => AManager())
+
+void main() => runApp(Sprinkle(supervisor: supervisor, child: EmailApp()));
+  
+class EmailApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      ...
+    )
+  }
+}
+```
+
+instead of this:
+
+```dart
+void main() => runApp(EmailApp());
+
+class EmailApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Provider(
+      data: Supervisor()
+          .register<AManager>(() => AManager())
+      child: MaterialApp(
+        ...
       ),
     );
   }
