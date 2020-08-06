@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:rxdart/rxdart.dart';
-import 'package:sprinkle/Manager.dart';
-import 'package:sprinkle/Service.dart';
+import 'manager.dart';
+import 'service.dart';
 
 class WebResourceManager<T> implements Manager {
   final PublishSubject<String> _filterSubject = PublishSubject<String>();
@@ -34,6 +34,5 @@ class WebResourceManager<T> implements Manager {
   }
 
   @override
-  T Function<T>() dispatch;
-
+  T Function<T>() use;
 }

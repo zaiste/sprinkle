@@ -1,3 +1,3 @@
 library sprinkle;
 
-export 'SprinkleExtension.dart';
+export 'sprinkle_extension.dart';
