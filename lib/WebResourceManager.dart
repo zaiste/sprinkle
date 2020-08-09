@@ -5,12 +5,11 @@ import 'package:sprinkle/Manager.dart';
 import 'package:sprinkle/Service.dart';
 
 class WebResourceManager<T> implements Manager {
-  final PublishSubject<String> _filterSubject = PublishSubject<String>();
-  final PublishSubject<int> _countSubject = PublishSubject<int>();
-  final PublishSubject<List<T>> _collectionSubject = PublishSubject();
+  final _filterSubject = PublishSubject<String>();
+  final _countSubject = PublishSubject<int>();
+  final _collectionSubject = PublishSubject<List<T>>();
 
   Sink<String> get inFilter => _filterSubject.sink;
-
   Stream<int> get count$ => _countSubject.stream;
   Stream<List<T>> get collection$ => _collectionSubject.stream;
 
@@ -32,8 +31,4 @@ class WebResourceManager<T> implements Manager {
     _filterSubject.close();
     _collectionSubject.close();
   }
-
-  @override
-  T Function<T>() use;
-
 }
