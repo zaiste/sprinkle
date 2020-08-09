@@ -19,9 +19,10 @@ Start by creating a `Manager`. It's a class that manages one or many data *store
 ```dart
 class CounterManager extends Manager {
   // 1. we create a data store (it's just a stream underneath)
-  var counter = 0.reactive
+  // Managers are immutable, thus stores must be `final`
+  final counter = 0.reactive
 
-  // 2. we define some actions 
+  // 2. we define some actions
   void increment() => counter.value++;
   void decrement() => counter.value--;
   void add(int number) => counter.value += number;
@@ -55,25 +56,25 @@ Reactivity is enabled for the following types in Dart:
 ##### `bool`
 
 ```dart
-var value = false.reactive;
+final value = false.reactive;
 ```
 
 ##### `int`
 
 ```dart
-var value = 42.reactive;
+final value = 42.reactive;
 ```
 
 ##### `String`
 
 ```dart
-var value = 'The quick brown fox jumps over the lazy dog'.reactive;
+final value = 'The quick brown fox jumps over the lazy dog'.reactive;
 ```
 
 ##### `List`
 
 ```dart
-var value = <String>[].reactive 
+final value = <String>[].reactive
 ```
 
 #### Automatic Provider Setup
@@ -81,12 +82,12 @@ var value = <String>[].reactive
 Use the `Sprinkle` widget to split the responsibilities and reduce the boilerplate so that you can write this:
 
 ```dart
-var supervisor = Supervisor()
+final supervisor = Supervisor()
   .register<AManager>(() => AManager())
 
-void main() => runApp(Sprinkle(supervisor: supervisor, child: EmailApp()));
-  
-class EmailApp extends StatelessWidget {
+void main() => runApp(Sprinkle(supervisor: supervisor, child: App()));
+
+class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
