@@ -1,3 +1,9 @@
+## [0.0.5] - 2020-08-10
+
+* Make `Manager` immutable
+* Simplify `WebResourceManager` 
+* Add reactivity to custom objects
+
 ## [0.0.4] - 2020-08-04
 
 * Add `.padding()` Widget extension
