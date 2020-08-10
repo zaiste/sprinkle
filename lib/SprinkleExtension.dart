@@ -37,3 +37,13 @@ extension SprinkleWidget on Widget {
 
   Widget center() => Center(child: this);
 }
+
+extension SprinkleContext on BuildContext {
+  Size get mediaQuerySize => MediaQuery.of(this).size;
+
+  Orientation get orientation => MediaQuery.of(this).orientation;
+
+  bool get isLandscape => orientation == Orientation.landscape;
+
+  bool get isPortrait => orientation == Orientation.portrait;
+}
