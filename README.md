@@ -101,6 +101,70 @@ Scaffold.of(context).showSnackBar(
 );
 ```
 
+### mediaQuerySize
+
+to get MediaQuery Size, you can write:
+
+```dart
+context.mediaQuerySize
+```
+
+instead of
+
+```dart
+
+MediaQuery.of(context).size
+
+```
+
+### orientation
+
+to get Device orientation, you can write:
+
+```dart
+context.orientation
+```
+
+instead of
+
+```dart
+
+MediaQuery.of(context).orientation
+
+```
+
+### isLandscape
+
+to check if Device orientation is Landscape, you can write:
+
+```dart
+context.isLandscape
+```
+
+instead of
+
+```dart
+
+MediaQuery.of(context).orientation == Orientation.landscape
+
+```
+
+### isPortrait
+
+to check if Device orientation is Portrait, you can write:
+
+```dart
+context.isPortrait
+```
+
+instead of
+
+```dart
+
+MediaQuery.of(context).orientation == Orientation.portrait
+
+```
+
 #### Padding
 
 Use `.padding()` method on widgets directly

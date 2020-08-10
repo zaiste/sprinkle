@@ -17,6 +17,14 @@ extension SprinkleExtension<T> on BuildContext {
       SnackBar(content: Text(content), backgroundColor: backgroundColor),
     );
   }
+
+  Size get mediaQuerySize => MediaQuery.of(this).size;
+
+  Orientation get orientation => MediaQuery.of(this).orientation;
+
+  bool get isLandscape => orientation == Orientation.landscape;
+
+  bool get isPortrait => orientation == Orientation.portrait;
 }
 
 extension SprinkleInt on int {
@@ -36,14 +44,4 @@ extension SprinkleWidget on Widget {
       Padding(padding: EdgeInsets.all(padding), child: this);
 
   Widget center() => Center(child: this);
-}
-
-extension SprinkleContext on BuildContext {
-  Size get mediaQuerySize => MediaQuery.of(this).size;
-
-  Orientation get orientation => MediaQuery.of(this).orientation;
-
-  bool get isLandscape => orientation == Orientation.landscape;
-
-  bool get isPortrait => orientation == Orientation.portrait;
 }
