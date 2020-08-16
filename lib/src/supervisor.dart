@@ -1,4 +1,4 @@
-import 'Manager.dart';
+import 'manager.dart';
 
 typedef ManagerFormula = Manager Function();
 

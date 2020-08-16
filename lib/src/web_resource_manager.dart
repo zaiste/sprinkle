@@ -1,8 +1,8 @@
 import 'dart:async';
 
 import 'package:rxdart/rxdart.dart';
-import 'package:sprinkle/Manager.dart';
-import 'package:sprinkle/Service.dart';
+
+import 'package:sprinkle/sprinkle.dart';
 
 class WebResourceManager<T> implements Manager {
   final _filterSubject = PublishSubject<String>();

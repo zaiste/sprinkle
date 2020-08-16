@@ -1,23 +1,17 @@
 library sprinkle;
 
-export 'SprinkleExtension.dart';
+export 'src/manager.dart';
 
-import 'package:flutter/material.dart';
+export 'src/observer.dart';
 
-import 'Provider.dart';
-import 'Supervisor.dart';
+export 'src/provider.dart';
 
-class Sprinkle extends StatelessWidget {
-  final Widget child;
-  final Supervisor supervisor;
+export 'src/service.dart';
 
-  Sprinkle({this.child, this.supervisor});
+export 'src/sprinkle.dart';
 
-  Widget build(BuildContext context) {
-    return Provider(
-      data: supervisor,
-      child: child,
-    );
-  }
-}
+export 'src/sprinkle_extension.dart';
 
+export 'src/supervisor.dart';
+
+export 'src/web_resource_manager.dart';
