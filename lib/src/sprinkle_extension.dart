@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'Provider.dart';
+import 'provider.dart';
 
 extension SprinkleExtension<T> on BuildContext {
   T use<T>() => Provider.of(this).summon<T>();
@@ -44,7 +43,8 @@ extension SprinkleBool on bool {
 }
 
 extension SprinkleList<T> on List<T> {
-  BehaviorSubject<List<T>> get reactive => BehaviorSubject<List<T>>.seeded(this);
+  BehaviorSubject<List<T>> get reactive =>
+      BehaviorSubject<List<T>>.seeded(this);
 }
 
 extension SprinkleObject<T> on T {
