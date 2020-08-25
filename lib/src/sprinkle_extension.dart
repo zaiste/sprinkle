@@ -18,6 +18,10 @@ extension SprinkleExtension<T> on BuildContext {
 
   Size get mediaQuerySize => MediaQuery.of(this).size;
 
+  double get height => mediaQuerySize.height;
+
+  double get width => mediaQuerySize.width;
+
   Orientation get orientation => MediaQuery.of(this).orientation;
 
   bool get isLandscape => orientation == Orientation.landscape;
