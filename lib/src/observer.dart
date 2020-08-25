@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 typedef _OnSuccessFunction<T> = Widget Function(BuildContext context, T data);
@@ -21,8 +23,12 @@ class Observer<T> extends StatelessWidget {
       this.onError})
       : super(key: key);
 
-  Function get _defaultOnWaiting =>
-      (context) => Center(child: CircularProgressIndicator());
+  Function get _defaultOnWaiting {
+    return Platform.isIOS
+        ? (context) => Center(child: CupertinoActivityIndicator())
+        : (context) => Center(child: CircularProgressIndicator());
+  }
+
   Function get _defaultOnError => (context, error) => Text(error);
 
   @override
