@@ -11,12 +11,13 @@ class Supervisor {
     return this;
   }
 
-  _fetch(name) => store[name] = formulas[name]();
-  T summon<T>() => store.containsKey(T) ? store[T] : _fetch(T);
+  _fetch<T>() => store[T] = formulas[T]();
 
-  release(name) {
-    Manager manager = store[name];
+  T summon<T>() => store.containsKey(T) ? store[T] : _fetch<T>();
+
+  release<T>() {
+    Manager manager = store[T];
     manager.dispose();
-    store.remove(name);
+    store.remove(T);
   }
 }
