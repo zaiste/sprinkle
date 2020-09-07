@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:rxdart/rxdart.dart';
 
 typedef UseFunction = T Function<T>();
 
