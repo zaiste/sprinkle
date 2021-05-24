@@ -3,9 +3,8 @@ description: Counter example using the Sprinkle package and the Sprinkle archite
 version: 1.0.0
 homepage: https://github.com/zaiste/sprinkle
 
-
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.00"
 
 dependencies:
   flutter:
@@ -20,5 +19,4 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
-
   uses-material-design: true
