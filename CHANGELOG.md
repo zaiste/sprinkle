@@ -1,3 +1,17 @@
+## Migration from 0.0.5 to 0.0.5-nullsafety
+
+`Padding`
+* Add `.paddingAll()` Widget extension
+* Add `.paddingSymmetric()` Widget extension
+* Add `.paddingOnly()` Widget extension
+* Add `.paddingZero()` Widget extension
+
+`Margin`
+* Add `.marginAll()` Widget extension
+* Add `.marginSymmetric()` Widget extension
+* Add `.marginOnly()` Widget extension
+* Add `.marginZero()` Widget extension
+
 ## [0.0.5] - 2020-08-10
 
 * Make `Manager` immutable

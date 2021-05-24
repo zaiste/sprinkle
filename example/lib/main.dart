@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:sprinkle/sprinkle.dart';
 
 void main() {
@@ -72,7 +71,7 @@ class HomePage extends StatelessWidget {
             builder: (_, data) {
               return Text(
                 '$data',
-                style: Theme.of(context).textTheme.headline4,
+                style: context.textTheme.headline4,
               );
             },
           ),
@@ -85,13 +84,13 @@ class HomePage extends StatelessWidget {
           FloatingActionButton(
             onPressed: counterManager.increment,
             tooltip: 'Increment',
-            child: Icon(Icons.add),
+            child: const Icon(Icons.add),
           ),
           SizedBox(height: 8),
           FloatingActionButton(
             onPressed: counterManager.decrement,
             tooltip: 'Decrement',
-            child: Icon(Icons.remove),
+            child: const Icon(Icons.remove),
           ),
         ],
       ),

@@ -1,15 +1,15 @@
 name: sprinkle
 description: A convenient and easy to use, stream-based Flutter architecture
-version: 0.0.5
+version: 0.0.6
 homepage: https://github.com/zaiste/sprinkle
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.00"
 
 dependencies:
   flutter:
     sdk: flutter
-  rxdart: ^0.23.1
+  rxdart: ^0.27.0
 
 dev_dependencies:
   flutter_test:
