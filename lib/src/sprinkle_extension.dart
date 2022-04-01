@@ -3,15 +3,15 @@ import 'package:flutter/material.dart';
 import 'provider.dart';
 
 extension SprinkleExtension<T> on BuildContext {
-  T use<T>() => Provider.of(this).summon<T>();
+  T? use<T>() => Provider.of(this)!.summon<T>();
 
-  Future<T> putRoute<T>(Route<T> route) => Navigator.of(this).push(route);
+  Future<T?> putRoute<T>(Route<T> route) => Navigator.of(this).push(route);
 
-  Future<T> display<T>(Widget widget) =>
+  Future<T?> display<T>(Widget widget) =>
       this.putRoute(MaterialPageRoute<T>(builder: (context) => widget));
 
-  showSnackBar(String content, {Color backgroundColor}) {
-    return Scaffold.of(this).showSnackBar(
+  showSnackBar(String content, {Color? backgroundColor}) {
+    return ScaffoldMessenger.of(this).showSnackBar(
       SnackBar(content: Text(content), backgroundColor: backgroundColor),
     );
   }

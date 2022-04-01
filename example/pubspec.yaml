@@ -2,6 +2,7 @@ name: example
 description: Counter example using the Sprinkle package and the Sprinkle architecture
 version: 1.0.0
 homepage: https://github.com/zaiste/sprinkle
+publish_to: none
 
 
 environment:
