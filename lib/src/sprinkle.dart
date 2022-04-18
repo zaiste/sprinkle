@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
-
-import 'package:sprinkle/sprinkle.dart';
+part of sprinkle;
 
 class Sprinkle extends StatelessWidget {
   final Widget child;
   final Supervisor supervisor;
 
-  Sprinkle({this.child, this.supervisor});
+  Sprinkle({required this.child, required this.supervisor});
 
   Widget build(BuildContext context) {
     return Provider(

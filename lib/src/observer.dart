@@ -1,48 +1,65 @@
-import 'dart:async';
-
-import 'package:flutter/material.dart';
-
-typedef _OnSuccessFunction<T> = Widget Function(BuildContext context, T data);
-typedef _OnErrorFunction = Widget Function(BuildContext context, Object error);
-typedef _OnWaitingFunction = Widget Function(BuildContext context);
+part of sprinkle;
 
 class Observer<T> extends StatelessWidget {
+  const Observer({
+    Key? key,
+    required this.stream,
+    required this.builder,
+    this.onWaiting,
+    this.onError,
+  }) : super(key: key);
+
   final Stream<T> stream;
 
-  final _OnSuccessFunction<T> builder;
-  final _OnWaitingFunction onWaiting;
-  final _OnErrorFunction onError;
+  final OnSuccessFunction<T> builder;
+  final OnWaitingFunction? onWaiting;
+  final OnErrorFunction? onError;
 
-  const Observer(
-      {Key key,
-      @required this.stream,
-      @required this.builder,
-      this.onWaiting,
-      this.onError})
-      : super(key: key);
+  Function get _defaultOnWaiting => (BuildContext context) {
+        switch (context.platform) {
+          case TargetPlatform.iOS:
+          case TargetPlatform.macOS:
+            return const Center(child: CupertinoActivityIndicator());
+          case TargetPlatform.android:
+            return const Center(child: CircularProgressIndicator());
+          case TargetPlatform.fuchsia:
+            return const Center(child: CircularProgressIndicator());
+          case TargetPlatform.linux:
+            return const Center(child: CircularProgressIndicator());
+          case TargetPlatform.windows:
+            return const Center(child: CircularProgressIndicator());
+          default:
+            return const Center(child: CircularProgressIndicator());
+        }
+      };
 
-  Function get _defaultOnWaiting =>
-      (context) => Center(child: CircularProgressIndicator());
-  Function get _defaultOnError => (context, error) => Text(error);
+  Function get _defaultOnError => (context, error) => Text('[Sprinkle] $error');
 
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<T>(
       stream: stream,
       builder: (context, AsyncSnapshot<T> snapshot) {
         if (snapshot.hasError) {
           return (onError != null)
-              ? onError(context, snapshot.error)
+              ? onError!(context, snapshot.error!)
               : _defaultOnError(context, snapshot.error);
-        }
-
-        if (snapshot.hasData) {
-          T data = snapshot.data;
-          return builder(context, data);
         } else {
-          return (onWaiting != null)
-              ? onWaiting(context)
-              : _defaultOnWaiting(context);
+          switch (snapshot.connectionState) {
+            case ConnectionState.none:
+            case ConnectionState.waiting:
+            case ConnectionState.active:
+              return (onWaiting != null)
+                  ? onWaiting!(context)
+                  : _defaultOnWaiting(context);
+            case ConnectionState.done:
+              T data = snapshot.data!;
+              return builder(context, data);
+            default:
+              return (onError != null)
+                  ? onError!(context, snapshot.error!)
+                  : _defaultOnError(context, snapshot.error);
+          }
         }
       },
     );

@@ -1,22 +1,17 @@
-import 'package:flutter/material.dart';
+part of sprinkle;
 
-import 'package:sprinkle/sprinkle.dart';
-
-class Provider extends InheritedWidget {
+class Provider<T extends Supervisor> extends InheritedWidget {
   final Supervisor data;
 
   Provider({
-    Key key,
-    Widget child,
-    this.data,
+    Key? key,
+    required Widget child,
+    required this.data,
   }) : super(key: key, child: child);
 
-  static Supervisor of(BuildContext context) {
-    return (context.dependOnInheritedWidgetOfExactType<Provider>()).data;
-  }
+  static Supervisor of(BuildContext context) =>
+      (context.dependOnInheritedWidgetOfExactType<Provider>())!.data;
 
   @override
-  bool updateShouldNotify(InheritedWidget oldWidget) {
-    return false;
-  }
+  bool updateShouldNotify(InheritedWidget oldWidget) => false;
 }

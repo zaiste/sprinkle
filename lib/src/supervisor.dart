@@ -1,22 +1,38 @@
-import 'manager.dart';
-
-typedef ManagerFormula = Manager Function();
+part of sprinkle;
 
 class Supervisor {
-  Map<dynamic, Manager> store = {};
-  Map<dynamic, ManagerFormula> formulas = {};
+  factory Supervisor() => _instance ??= const Supervisor._();
+
+  const Supervisor._();
+
+  static Supervisor? _instance;
+
+  static final store = <dynamic, Manager>{};
+
+  static Map<dynamic, ManagerFormula> formulas = {};
+
+  bool isRegistered<T>() => formulas.containsKey(T);
 
   Supervisor register<T extends Manager>(ManagerFormula formula) {
     formulas[T] = formula;
     return this;
   }
 
-  _fetch(name) => store[name] = formulas[name]();
-  T summon<T>() => store.containsKey(T) ? store[T] : _fetch(T);
+  _fetch<T extends Manager>() {
+    if (formulas.containsKey(T)) {
+      return store[T] = formulas[T]!();
+    } else {
+      throw Exception(
+          '[Sprinkle:] Supervisor not contain Manager $T please register $T');
+    }
+  }
 
-  release(name) {
-    Manager manager = store[name];
-    manager.dispose();
-    store.remove(name);
+  T summon<T extends Manager>() =>
+      store.containsKey(T) ? store[T] : _fetch<T>();
+
+  release<T extends Manager>() {
+    Manager manager = store[T]!;
+    manager._onClose();
+    store.remove(T);
   }
 }

@@ -47,13 +47,10 @@ class App extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
+class HomePage extends SprinkleWidget<CounterManager> {
   // Our widgets are *always* stateless
   @override
   Widget build(BuildContext context) {
-    // 3. we include a manager with `use`
-    var counterManager = context.use<CounterManager>();
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Sprinkle Exemple'),
@@ -67,9 +64,9 @@ class HomePage extends StatelessWidget {
           // 4. we observe a part of widget tree
           Observer<int>(
             // 5. we listen to a specific stream from the manager
-            stream: counterManager.counter,
+            stream: manager.counter,
             // 6. we rebuild once the stream changes
-            builder: (_, data) {
+            builder: (context, data) {
               return Text(
                 '$data',
                 style: Theme.of(context).textTheme.headline4,
@@ -83,13 +80,13 @@ class HomePage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           FloatingActionButton(
-            onPressed: counterManager.increment,
+            onPressed: manager.increment,
             tooltip: 'Increment',
             child: Icon(Icons.add),
           ),
           SizedBox(height: 8),
           FloatingActionButton(
-            onPressed: counterManager.decrement,
+            onPressed: manager.decrement,
             tooltip: 'Decrement',
             child: Icon(Icons.remove),
           ),

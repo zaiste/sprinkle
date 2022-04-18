@@ -1,34 +1,39 @@
-import 'dart:async';
+part of sprinkle;
 
-import 'package:rxdart/rxdart.dart';
+class WebResourceManager<T extends Service> extends Manager {
+  // final _filterSubject = PublishSubject<String>();
+  // final _countSubject = PublishSubject<int>();
+  // final _collectionSubject = PublishSubject<List<T>>();
 
-import 'package:sprinkle/sprinkle.dart';
+  // Sink<String> get inFilter => _filterSubject.sink;
+  // Stream<int> get count$ => _countSubject.stream;
+  // Stream<List<T>> get collection$ => _collectionSubject.stream;
 
-class WebResourceManager<T> implements Manager {
-  final _filterSubject = PublishSubject<String>();
-  final _countSubject = PublishSubject<int>();
-  final _collectionSubject = PublishSubject<List<T>>();
+  // WebResourceManager(Service<T> service) {
+  //   _filterSubject
+  //       .debounceTime(Duration(milliseconds: 500))
+  //       .switchMap((filter) async* {
+  //     yield await service.browse(filter: filter);
+  //   }).listen((elements) async {
+  //     _collectionSubject.add(elements);
+  //   });
 
-  Sink<String> get inFilter => _filterSubject.sink;
-  Stream<int> get count$ => _countSubject.stream;
-  Stream<List<T>> get collection$ => _collectionSubject.stream;
+  //   _collectionSubject.listen((elements) => _countSubject.add(elements.length));
+  // }
 
-  WebResourceManager(Service<T> service) {
-    _filterSubject
-        .debounceTime(Duration(milliseconds: 500))
-        .switchMap((filter) async* {
-      yield await service.browse(filter: filter);
-    }).listen((elements) async {
-      _collectionSubject.add(elements);
-    });
+  // @override
+  // void dispose() {
+  //   _countSubject.close();
+  //   _filterSubject.close();
+  //   _collectionSubject.close();
+  // }
 
-    _collectionSubject.listen((elements) => _countSubject.add(elements.length));
-  }
+  final T _service;
+
+  WebResourceManager(T service) : _service = service;
+
+  T get service => _service;
 
   @override
-  void dispose() {
-    _countSubject.close();
-    _filterSubject.close();
-    _collectionSubject.close();
-  }
+  void dispose() {}
 }

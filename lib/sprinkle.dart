@@ -1,17 +1,27 @@
 library sprinkle;
 
-export 'src/manager.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:rxdart/rxdart.dart';
 
-export 'src/observer.dart';
+import 'src/typedef.dart';
 
-export 'src/provider.dart';
+part 'src/manager.dart';
 
-export 'src/service.dart';
+part 'src/observer.dart';
 
-export 'src/sprinkle.dart';
+part 'src/provider.dart';
 
-export 'src/sprinkle_extension.dart';
+part 'src/service.dart';
 
-export 'src/supervisor.dart';
+part 'src/sprinkle_widget.dart';
 
-export 'src/web_resource_manager.dart';
+part 'src/supervisor.dart';
+
+part 'src/sprinkle.dart';
+
+part 'src/web_resource_manager.dart';
+
+part 'src/extensions/sprinkle_extension.dart';
+
+part 'src/extensions/rx_extension.dart';

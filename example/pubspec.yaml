@@ -3,22 +3,24 @@ description: Counter example using the Sprinkle package and the Sprinkle archite
 version: 1.0.0
 homepage: https://github.com/zaiste/sprinkle
 
+publish_to: "none"
 
 environment:
-  sdk: ">=2.6.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+
   sprinkle:
     path: ../
 
-  cupertino_icons: ^0.1.3
+  cupertino_icons: ^1.0.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^1.0.4
 
 flutter:
-
   uses-material-design: true
