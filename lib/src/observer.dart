@@ -48,10 +48,10 @@ class Observer<T> extends StatelessWidget {
           switch (snapshot.connectionState) {
             case ConnectionState.none:
             case ConnectionState.waiting:
-            case ConnectionState.active:
               return (onWaiting != null)
                   ? onWaiting!(context)
                   : _defaultOnWaiting(context);
+            case ConnectionState.active:
             case ConnectionState.done:
               T data = snapshot.data!;
               return builder(context, data);

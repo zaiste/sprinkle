@@ -48,11 +48,11 @@ mixin SprinkleElementMixin<M extends Manager> on ComponentElement {
 
   @override
   void mount(Element? parent, Object? newSlot) {
+    super.mount(parent, newSlot);
+
     if (widget.manager._isInitialized) return;
 
     widget.manager.init();
-
-    super.mount(parent, newSlot);
   }
 
   @override
