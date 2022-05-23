@@ -1,10 +1,11 @@
 library sprinkle;
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:rxdart/rxdart.dart';
 
-import 'src/typedef.dart';
+part 'src/typedef.dart';
 
 part 'src/manager.dart';
 

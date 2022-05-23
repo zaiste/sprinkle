@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
-
-import '../sprinkle.dart';
+part of sprinkle;
 
 typedef ManagerFormula = Manager Function();
 

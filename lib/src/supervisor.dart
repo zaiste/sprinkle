@@ -30,9 +30,19 @@ class Supervisor {
   T summon<T extends Manager>() =>
       store.containsKey(T) ? store[T] : _fetch<T>();
 
-  release<T extends Manager>() {
+  void release<T extends Manager>() {
     Manager manager = store[T]!;
     manager._onClose();
     store.remove(T);
+  }
+
+  void releaseAll() {
+    formulas.forEach(
+      (key, value) {
+        var manager = store[key];
+        manager?._onClose();
+        store.remove(key);
+      },
+    );
   }
 }

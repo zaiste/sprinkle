@@ -32,6 +32,7 @@ abstract class Manager {
   }
 
   @protected
+  @nonVirtual
   @mustCallSuper
   void _onClose() {
     _lifeCycle.isClosed = true;
